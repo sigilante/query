@@ -129,14 +129,14 @@ There are fundamentally four types of question entries we need to support:
 
 0. Message (question with no answer, just text)
 1. Short answer (single right value)
-  1. Value (treated as text input and unparsed)
-  2. Code (parsed by Hoon as code)
+    1. Value (treated as text input and unparsed)
+    2. Code (parsed by Hoon as code)
 2. Multiple choice (select one from a field)
-  1. Static (answers are known and fixed)
-  2. Parametric (answers are programmatically generated from random values)
+    1. Static (answers are known and fixed)
+    2. Parametric (answers are programmatically generated from random values)
 3. Long answer (as with a core definition)
-  1. Value (seems very unlikely, last priority)
-  2. Code (parsed by Hoon as code)
+    1. Value (seems very unlikely, last priority)
+    2. Code (parsed by Hoon as code)
 
 #### `%message`
 
