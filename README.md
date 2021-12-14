@@ -37,6 +37,7 @@ course-title
     ├── init/hoon
     ├── depends/json
     ├── lesson/manifest
+    ├── questions/lesson
     └── tests/hoon
 ```
 
@@ -104,7 +105,23 @@ Lessons have an order, altho some lessons may be marked as optional.  Lessons sh
 - `%version` is a triple of major/minor/patch version numbers (required)
   - Question:  how should lesson version and course version relate?
 
-A lesson consists of many questions in an ordered list.
+A lesson consists of many questions in an ordered list in the `questions/lesson` file.  This is essentially a JSON file with special validation mark.
+
+```
+[
+  {
+    "class": "short",
+    "content": "Two roads diverged in a yellow wood.  Which did you take?",
+    "type": "value",
+    "answer": "the one less traveled by"
+  },
+  {
+    "class": "mc",
+    "content": "Two roads diverged in a wood, and which did you take?",
+    "answers": ["the first kept for another day", "*the one less traveled by"]
+  }
+]
+```
 
 ### Question
 
@@ -125,17 +142,58 @@ There are fundamentally four types of question entries we need to support:
 
 A message question contains explanatory or prefatory text only, and expects no input (i.e. any input advances).
 
+```
+[
+  {
+    "class": "message",
+    "content": "Two roads diverged in a yellow wood.  Which did you take?",
+  }
+]
+```
+
 #### `%short`
 
 A short-answer question checks a value against a list of possible answers.  For instance, there are several equivalent ways to input a gate call, such as `(add 1 2)` and `%-  add  1  2`.  For a `%value` short-answer question, each case should be checked.  For a `%code` short-answer question, only the expected result need be checked.
+
+```
+[
+  {
+    "class": "short",
+    "content": "Two roads diverged in a yellow wood.  Which did you take?",
+    "type": "value",
+    "answer": "the one less traveled by"
+  }
+]
+```
 
 #### `%mc`
 
 A selection of possible answers is presented in random order.  Multiple choice questions may be static or parameterized.
 
+```
+[
+  {
+    "class": "mc",
+    "content": "Two roads diverged in a wood, and which did you take?",
+    "answers": ["the first kept for another day", "*the one less traveled by"]
+  }
+]
+```
+
 #### `%long`
 
 The main difference for a long-form question from a short-answer question is that `Return` doesn't end the input.  Instead, two `Return`s are needed for `%query` to parse the result.
+
+```
+[
+  {
+    "class": "long",
+    "content": "Produce a gate with a custom sample.  It should accept an atom `n` with default of 2 and add 10 to the value using the standard library `++add`.",
+    "type": "code",
+    "answer": "|:(n=`@`2 (add n 10))"
+  }
+]
+```
 
 
 ##  References
