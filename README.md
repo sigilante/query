@@ -2,7 +2,7 @@
 
 ##  What is `%query`?
 
-`%query` is an Urbit app that turns the console interface into an interactive lesson experience.  Students can learn how Hoon and Arvo work right where they will later be developing their own tools and programs later.
+`%query` is a (planned, in-progress) Urbit app that turns the console interface into an interactive lesson experience.  Students can learn how Hoon and Arvo work right where they will later be developing their own tools and programs later.
 
 ##  What is a `%query` Course?
 
